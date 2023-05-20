@@ -54,6 +54,14 @@ def get_all_line_co_ords():
             ]
     return cols+rows+diagonals
 
+def is_board_full(board):
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+            if board[i][j] is None:
+                return False
+    return True
+
+
 board = new_board()
 render(board)
 
@@ -78,6 +86,9 @@ while True:
         render(new_board)
         if has_won(new_board):
             print("Congratulations {winner}, you won!".format(winner=pin))
+            break
+        if is_board_full(new_board):
+            print("Board is full. Nobody won. Try again.")
             break
         old_board = new_board
     else:
